@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <locale.h>
+#include "massa.c"
 #include "massa.h"
-#include "comprimento.c"
+#include "comprimento.h"
 
 int main()
 {
@@ -23,6 +24,7 @@ int main()
                "8 - Unidades de Tempo\n"
                "9 - Unidades de Memória\n"
                "0 - Para sair!\n");
+
         scanf("%d", &tipoUnidade);
 
         switch (tipoUnidade){
@@ -39,16 +41,16 @@ int main()
 
             resultado = comprimento(unidadeOrigem, unidadeDestino, valor);
 
-            if (resultado >= 0)
+            if (resultado >= 0){
                 if ((unidadeOrigem == 1 && unidadeDestino == 2) || (unidadeOrigem == 2 && unidadeDestino == 3)){
                     printf("O resultado da conversão é: %.3lf\n", resultado);
                 }
                 else{
-                    printf("O resultado da conversão é: %.4lf\n", resultado);
+                    printf("O resultado da conversão é: %.3lf\n", resultado);
                 }
-
+            }
                 printf("Pressione Enter para continuar...\n");
-                while (getchar() != '\n')2;      // Limpa buffer
+                while (getchar() != '\n');      // Limpa buffer
                 getchar(); // Aguarda Enter
                 break;
 
@@ -64,7 +66,7 @@ int main()
 
                 resultado = massa(unidadeOrigem, unidadeDestino, valor);
 
-                if (resultado >= 0)
+                if (resultado >= 0){
                 if ((unidadeOrigem == 1 && unidadeDestino == 3) || (unidadeOrigem == 2 && unidadeDestino == 1)) {
                     printf("O resultado da conversão é: %.4lf\n", resultado);
                 }else if((unidadeOrigem == 1 && unidadeDestino == 2) || (unidadeOrigem == 3 && unidadeDestino == 1) || (unidadeOrigem == 3 && unidadeDestino == 2)) {
@@ -72,7 +74,7 @@ int main()
                 }else{
                     printf("O resultado da conversão é: %.6lf\n", resultado);
                 }
-
+            }
                 printf("Pressione Enter para continuar...\n");
                 while (getchar() != '\n');      // Limpa buffer
                 getchar(); // Aguarda Enter
@@ -89,7 +91,6 @@ int main()
                 getchar(); // Aguarda Enter
                 break;
             }
-    } while (tipoUnidade != 0);
-
+    }while (tipoUnidade != 0);
     return 0;
 }
