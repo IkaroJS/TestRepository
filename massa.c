@@ -1,21 +1,68 @@
-#include <string.h>
+#include <stdio.h>
+#include "massa.h"
+#include "locale.h"
 
-double obterFatorConversaoMassa(char unidade[]);
-
-double obterFatorConversaoMassa(char unidade[])
-//Valores com padrão de quilograma
+double massa(int unidadeOrigem, int unidadeDestino, double valor)
 {
-    if (strcmp(unidade, "quilograma") == 0)
-        return 1;
+    setlocale(LC_ALL, "Portuguese_Brazil");
+    double resultado = 0.0;
 
-    if (strcmp(unidade, "grama") == 0)
-        return 1000;
+    switch (unidadeOrigem) {
+    case 1: // quilograma
+        switch (unidadeDestino) {
+        case 1:
+            printf("A unidade informada é a mesma da origem!\n");
+            break;
+        case 2:
+            resultado = valor * 1000.0; // quilograma para grama
+            break;
+        case 3:
+            resultado = valor / 1000.0; // quilograma para tonelada
+            break;
+        default:
+            printf("Conversão inválida!\n");
+            return -1;
+        }
+        break;
 
-    if (strcmp(unidade, "miligrama") == 0)
-        return 1000000;
+    case 2: // grama
+        switch (unidadeDestino) {
+        case 1:
+            resultado = valor / 1000.0; // grama para quilograma
+            break;
+        case 2:
+            printf("A unidade informada é a mesma da origem!\n");
+            break;
+        case 3:
+            resultado = valor / 1000000.0; // grama para tonelada
+            break;
+        default:
+            printf("Conversão inválida!\n");
+            return -1;
+        }
+        break;
 
-    if (strcmp(unidade, "tonelada") == 0)
-        return 1000;
+    case 3: // tonelada
+        switch (unidadeDestino) {
+        case 1:
+            resultado = valor * 1000.0; // tonelada para quilograma
+            break;
+        case 2:
+            resultado = valor * 1000000.0; // tonelada para grama
+            break;
+        case 3:
+            printf("A unidade informada é a mesma da origem!\n");
+            break;
+        default:
+            printf("Conversão inválida!\n");
+            return -1;
+        }
+        break;
 
-    return 0;
+    default:
+        printf("Conversão inválida!\n");
+        return -1;
+    }
+
+    return resultado;
 }
