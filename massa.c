@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include "massa.h"
-#include "locale.h"
 
 double massa(int unidadeOrigem, int unidadeDestino, double valor)
 {
-    setlocale(LC_ALL, "Portuguese_Brazil");
     double resultado = 0.0;
 
     switch (unidadeOrigem) {
@@ -53,15 +51,12 @@ double massa(int unidadeOrigem, int unidadeDestino, double valor)
         case 3:
             printf("A unidade informada é a mesma da origem!\n");
             break;
+
         default:
             printf("Conversão inválida!\n");
             return -1;
         }
         break;
-
-    default:
-        printf("Conversão inválida!\n");
-        return -1;
     }
 
     return resultado;
