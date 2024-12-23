@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include "massa.h"
-#include "Comprimento.h"
+#include "comprimento.c"
 
 int main()
 {
@@ -91,5 +91,5 @@ int main()
             }
     } while (tipoUnidade != 0);
 
-    return 0;
+    return 0;
 }
